@@ -37,7 +37,7 @@ docker-compose up -d
 ### 4. Execute as migrations e seeds
 
 ```bash
-npx drizzle-kit migrate
+npm run db:migrate
 npm run db:seed
 ```
 
