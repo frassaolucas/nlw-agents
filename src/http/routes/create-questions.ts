@@ -1,6 +1,6 @@
 import { and, eq, sql } from 'drizzle-orm';
 import type { FastifyPluginCallbackZod } from 'fastify-type-provider-zod';
-import { nullable, z } from 'zod/v4';
+import { z } from 'zod/v4';
 import { db } from '../../db/connection.ts';
 import { schema } from '../../db/schema/index.ts';
 import { generateAnswer, generateEmbeddings } from '../../services/gemini.ts';
@@ -44,7 +44,7 @@ export const createQuestionRoute: FastifyPluginCallbackZod = (app) => {
         )
         .limit(3);
 
-      let answer: string | null = nullable;
+      let answer: string | null = null;
 
       if (chunks.length > 0) {
         const transcriptions = chunks.map((chunk) => chunk.transcription);
@@ -65,6 +65,7 @@ export const createQuestionRoute: FastifyPluginCallbackZod = (app) => {
 
       return reply.status(201).send({
         questionId: insertedQuestion.id,
+        answer,
         message: 'Question created successfully',
       });
     }
