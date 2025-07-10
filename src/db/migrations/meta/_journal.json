@@ -15,6 +15,13 @@
       "when": 1752083440293,
       "tag": "0001_faulty_wrecking_crew",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1752172225632,
+      "tag": "0002_nifty_junta",
+      "breakpoints": true
     }
   ]
 }
