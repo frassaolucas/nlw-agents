@@ -1,4 +1,4 @@
-import { eq } from 'drizzle-orm';
+import { desc, eq } from 'drizzle-orm';
 import type { FastifyPluginCallbackZod } from 'fastify-type-provider-zod';
 import { z } from 'zod/v4';
 import { db } from '../../db/connection.ts';
@@ -26,7 +26,7 @@ export const getRoomQuestions: FastifyPluginCallbackZod = (app) => {
         })
         .from(schema.questions)
         .where(eq(schema.questions.roomId, roomId))
-        .orderBy(schema.questions.createdAt);
+        .orderBy(desc(schema.questions.createdAt));
 
       return result;
     }
